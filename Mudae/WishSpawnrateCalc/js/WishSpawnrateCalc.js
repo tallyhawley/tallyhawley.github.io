@@ -140,7 +140,8 @@ let app = new Vue({
 		
 		Prob: function () {
 			let sm = 0;
-			let val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
+			let disabledChars = this.disabledChars - this.antidisabledChars;
+			let val = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
 				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(val**x)*((1-val)**(this.rollAmount-x))
 			}
@@ -150,6 +151,16 @@ let app = new Vue({
 		KeyVal: function () {
 			let disabledChars = this.disabledChars - this.antidisabledChars;
 			sm = (this.keyWishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.totalChars - disabledChars) + (1 / this.wishProtection);
+			return 100*sm
+		},
+
+		KeyProb: function () {
+			let sm = 0;
+			let disabledChars = this.disabledChars - this.antidisabledChars;
+			let val = (this.keyWishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.totalChars - disabledChars) + (1 / this.wishProtection);
+			for (var x = this.rollAmount; x>=this.wishesDesired; x--) {
+				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(val**x)*((1-val)**(this.rollAmount-x))
+			}
 			return 100*sm
 		},
 	},
