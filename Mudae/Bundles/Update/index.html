@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Bundle Update Request</title>
+      <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+      <script src="js/Update.js"></script>
+   </head>
+   <body>
+      <div id="header">
+         Send Form's data as JSON
+      </div>
+      <form id="myform" type="post">
+         <fieldset>
+            <legend> Update Bundle </legend>
+            <p>Please fill out this form</p>
+            <div class="elements">
+               <label for="name">Bundle :</label>
+               <input  required="required" type="text"  value="Kadokawa Future Publishing" name="fname"  size="20"  />
+            </div>
+            <div class="elements">
+               <label for="Size">Size :</label>
+               <input required="required" type="number" value="0" id="size" name="size" size="10" />
+            </div>
+            <div class="elements">
+               <label for="Wa">$wa :</label>
+               <input required="required" type="number" value="0" id="wa" name="wa" size="10" />
+            </div>
+            <div class="elements">
+               <label for="Ha">$ha :</label>
+               <input required="required" type="number" value="0" id="ha" name="ha" size="10" />
+            </div>
+            <div class="elements">
+               <label for="Wg">$wa :</label>
+               <input required="required" type="number" value="0" id="wg" name="wg" size="10" />
+            </div>
+            <div class="elements">
+               <label for="Hg">$ha :</label>
+               <input required="required" type="number" value="0" id="hg" name="hg" size="10" />
+            </div>
+            <div class="submit">
+               <input type="submit" id="btn" name="btn" class="btn" value="Submit" />
+            </div>
+            <span class="elements">Press "Ctrl + Shift + J" to see sent JSON in console: <span>
+         </fieldset>
+      </form>
+   </body>
