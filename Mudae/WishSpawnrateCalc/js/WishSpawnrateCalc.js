@@ -106,9 +106,10 @@ let app = new Vue({
 		firstWishBoost: 0,
 		wishProtection: 5000,
 		disabledChars: 0,
+		antidisabledChars: 0,
 		leftChars: 22000,
-		totalChars: 23000,
-		PersonalRare: 2,
+		totalChars: 39171,
+		PersonalRare: 1,
 		rollAmount: 10,
 		wishesDesired: 1,
 		f: [1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880, 3628800, 39916800, 479001600, 6227020800, 87178291200, 1307674368000, 20922789888000, 355687428096000, 6402373705728000, 121645100408832000, 2432902008176640000, 51090942171709440000, 1.1240007277776077e+21, 
@@ -132,7 +133,8 @@ let app = new Vue({
 	
 	computed: {
 		Val: function () {
-                        sm = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - this.disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
+			let disabledChars = this.disabledChars - this.antidisabledChars;
+			sm = (this.wishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.leftChars - disabledChars + ((1 - (this.leftChars) / (this.totalChars)) ** this.PersonalRare) * this.totalChars) + (1 / this.wishProtection);
 			return 100*sm
 		},
 		
@@ -143,7 +145,13 @@ let app = new Vue({
 				sm += (this.f[this.rollAmount])/(this.f[this.rollAmount-x]*this.f[x])*(val**x)*((1-val)**(this.rollAmount-x))
 			}
 			return 100*sm
-		}
+		},
+
+		KeyVal: function () {
+			let disabledChars = this.disabledChars - this.antidisabledChars;
+			sm = (this.keyWishlistSize * (1 + this.wishBoost / 100) + this.firstWishBoost / 100) / (this.totalChars - disabledChars) + (1 / this.wishProtection);
+			return 100*sm
+		},
 	},
 	mounted: function () {
 		renderMathInElement(this.$refs.nerdShit);

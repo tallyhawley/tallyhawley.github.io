@@ -45,6 +45,7 @@
                         <value-input id="firstWishBoost" label="First Wish Boost %" fa-icon="percent" v-model:value.number="firstWishBoost" :min-tick="0" :max-tick="500" :tick-vals="[25, 50]"></value-input>
                         <value-input id="wishProtection" label="Wish Protection Rate (1/X)" fa-icon="star" v-model:value.number="wishProtection" :min-tick="499" :max-tick="10000" :tick-vals="[1, 10, 25, 50]" is-rank></value-input>
                         <value-input id="disabledChars" label="No. of Disabled Characters in Your Roll Type" fa-icon="list" v-model:value.number="disabledChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
+                        <value-input id="antidisabledChars" label="No. of Antidisabled Characters in Your Roll Type" fa-icon="list" v-model:value.number="antidisabledChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
                         <value-input id="leftChars" label="No. of Characters Left in Your Roll Type" fa-icon="users" v-model:value.number="leftChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
                         <value-input id="totalChars" label="Total No. of Characters in Your Roll Type" fa-icon="users" v-model:value.number="totalChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
                         <value-input id="PersonalRare" label="Personal Rare Value" fa-icon="users" v-model:value.number="PersonalRare" :min-tick="1" :max-tick="10" :tick-vals="[1]"></value-input>
@@ -71,6 +72,16 @@
                         <tbody>
                            <tr>
                               <td>{{Prob}}</td>
+                           </tr>
+                        </tbody>
+                        <thead>
+                           <tr>
+                              <th scope="col">% Chance of Rolling a Key Wish</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>{{KeyVal}}</td>
                            </tr>
                         </tbody>
                      </table>
