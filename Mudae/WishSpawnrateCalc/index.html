@@ -23,23 +23,12 @@
       <div class="pos-f-t">
         <nav class="navbar navbar-dark bg-dark">
           <div>
-            <a href="../../Main/" id="homeButton">Home</a>
+            <a href="/" id="homeButton">Home</a>
           </div>
           <div class="mx-auto">
-            <a class="navbar-brand">Badge Efficiency Calculator</a>
+            <a class="navbar-brand">Wish Spawnrate Calculator</a>
           </div>
-          <button id="navButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button>
         </nav>
-        <div class="collapse" id="navbarToggleExternalContent">
-          <div class="bg-dark p-4">
-            <h4 class="text-white"><a href="../BadgeEfficiencyCalc/" class="navLink">Badge Efficiency Calculator</a></h4>
-          </div>
-          <div class="bg-dark p-4">
-            <h4 class="navItem"><a href="../Bundles/" class="navLink">Bundles</a></h4>
-          </div>
-        </div>
       </div>
     </header>
       <main role="main" class="flex-fill mt-4">
@@ -48,7 +37,10 @@
                <div id="calc-form" aria-labelledby="formula-header">
                   <div class="card-body">
                      <form>
-                        <value-input id="wishlistSize" label="No. of Charaters Wished in Your Roll Type (Unclaimed)" fa-icon="list" v-model:value.number="wishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
+                        <value-input id="wishlistSize" label="No. of Characters Wished in Your Roll Type (Unclaimed)" fa-icon="list" v-model:value.number="wishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
+                        <value-input id="keyWishlistSize" label="No. of Characters Wished in Your Roll Type (Claimed)" fa-icon="list" v-model:value.number="keyWishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
+                        <value-input id="starwishSize" label="No. of Characters Starwished in Your Roll Type (Unlaimed)" fa-icon="list" v-model:value.number="starwishSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
+                        <value-input id="keyStarwishSize" label="No. of Characters Starwished in Your Roll Type (Claimed)" fa-icon="list" v-model:value.number="keyStarwishSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
                         <value-input id="wishBoost" label="Badge Wish Boost %" fa-icon="percent" v-model:value.number="wishBoost" :min-tick="0" :max-tick="150" :tick-vals="[25, 50]"></value-input>
                         <value-input id="firstWishBoost" label="First Wish Boost %" fa-icon="percent" v-model:value.number="firstWishBoost" :min-tick="0" :max-tick="500" :tick-vals="[25, 50]"></value-input>
                         <value-input id="wishProtection" label="Wish Protection Rate (1/X)" fa-icon="star" v-model:value.number="wishProtection" :min-tick="499" :max-tick="10000" :tick-vals="[1, 10, 25, 50]" is-rank></value-input>

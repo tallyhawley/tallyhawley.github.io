@@ -99,6 +99,9 @@ let app = new Vue({
 	el: "#app",
 	data: {
 		wishlistSize: 7,
+		keyWishlistSize: 7,
+		starwishSize: 1,
+		keyStarwishSize: 1,
 		wishBoost: 0,
 		firstWishBoost: 0,
 		wishProtection: 5000,
