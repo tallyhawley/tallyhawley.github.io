@@ -23,34 +23,40 @@
       <div class="pos-f-t">
         <nav class="navbar navbar-dark bg-dark">
           <div>
-            <a href="../.." id="homeButton">Home</a>
+            <a href="../../Main/" id="homeButton">Home</a>
           </div>
           <div class="mx-auto">
-            <a class="navbar-brand">Wish Spawnrate Calculator</a>
+            <a class="navbar-brand">Badge Efficiency Calculator</a>
           </div>
+          <button id="navButton" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
         </nav>
+        <div class="collapse" id="navbarToggleExternalContent">
+          <div class="bg-dark p-4">
+            <h4 class="text-white"><a href="../BadgeEfficiencyCalc/" class="navLink">Badge Efficiency Calculator</a></h4>
+          </div>
+          <div class="bg-dark p-4">
+            <h4 class="navItem"><a href="../Bundles/" class="navLink">Bundles</a></h4>
+          </div>
+        </div>
       </div>
     </header>
       <main role="main" class="flex-fill mt-4">
-         <div id="app">
+         <div id="app" class="container">
             <div class="card mb-4">
                <div id="calc-form" aria-labelledby="formula-header">
                   <div class="card-body">
                      <form>
                         <value-input id="wishlistSize" label="No. of Charaters Wished in Your Roll Type (Unclaimed)" fa-icon="list" v-model:value.number="wishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
-                        <value-input id="keyWishlistSize" label="No. of Charaters Wished in Your Roll Type (Claimed for keys)" fa-icon="list" v-model:value.number="keyWishlistSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
-                        <value-input id="starWishSize" label="No. of Charaters Starwished in Your Roll Type (Unclaimed)" fa-icon="list" v-model:value.number="starWishSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
-                        <value-input id="keyStarWishSize" label="No. of Charaters Starwished in Your Roll Type (Claimed for keys)" fa-icon="list" v-model:value.number="keyStarWishSize" :min-tick="0" :tick-vals="[1, 10]"></value-input>
                         <value-input id="wishBoost" label="Badge Wish Boost %" fa-icon="percent" v-model:value.number="wishBoost" :min-tick="0" :max-tick="150" :tick-vals="[25, 50]"></value-input>
                         <value-input id="firstWishBoost" label="First Wish Boost %" fa-icon="percent" v-model:value.number="firstWishBoost" :min-tick="0" :max-tick="500" :tick-vals="[25, 50]"></value-input>
                         <value-input id="wishProtection" label="Wish Protection Rate (1/X)" fa-icon="star" v-model:value.number="wishProtection" :min-tick="499" :max-tick="10000" :tick-vals="[1, 10, 25, 50]" is-rank></value-input>
                         <value-input id="disabledChars" label="No. of Disabled Characters in Your Roll Type" fa-icon="list" v-model:value.number="disabledChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
-                        <value-input id="antidisabledChars" label="No. of Antidisabled Characters" fa-icon="list" v-model:value.number="antidisabledChars" :min-tick="0" :max-tick="10000" :tick-vals="[100, 500]"></value-input>
                         <value-input id="leftChars" label="No. of Characters Left in Your Roll Type" fa-icon="users" v-model:value.number="leftChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
                         <value-input id="totalChars" label="Total No. of Characters in Your Roll Type" fa-icon="users" v-model:value.number="totalChars" :min-tick="0" :max-tick="100000" :tick-vals="[1000, 5000]"></value-input>
                         <value-input id="PersonalRare" label="Personal Rare Value" fa-icon="users" v-model:value.number="PersonalRare" :min-tick="1" :max-tick="10" :tick-vals="[1]"></value-input>
                         <value-input id="rollAmount" label="Amount of Rolls You Have" fa-icon="users" v-model:value.number="rollAmount" :min-tick="1" :max-tick="170" :tick-vals="[1, 5]"></value-input>
-                        <value-input id="bonusWishAmount" label="Amount of Rolls You Have" fa-icon="users" v-model:value.number="bonusWishAmount" :min-tick="1" :max-tick="170" :tick-vals="[1, 5]"></value-input>
                         <value-input id="wishesDesired" label="No. of Wishes Desired from Rolls" fa-icon="users" v-model:value.number="wishesDesired" :min-tick="1" :max-tick="170" :tick-vals="[1]"></value-input>
                         
                      </form>
@@ -73,26 +79,6 @@
                         <tbody>
                            <tr>
                               <td>{{Prob}}</td>
-                           </tr>
-                        </tbody>
-                        <thead>
-                           <tr>
-                              <th scope="col">% Chance of Rolling a Claimed Wish With Persr 1</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>{{KeyVal}}</td>
-                           </tr>
-                        </tbody>
-                        <thead>
-                           <tr>
-                              <th scope="col">% Chance of rolling 1 or more claimed wishes in {{rollAmount - }} rolls With persr 1</th>
-                           </tr>
-                        </thead>
-                        <tbody>
-                           <tr>
-                              <td>{{KeyProb}}</td>
                            </tr>
                         </tbody>
                      </table>
@@ -163,19 +149,16 @@
                <div id="code-text" class="collapse" aria-labelledby="code-header">
                   <div class="card-body" id="code-shit" ref="codeShit">
                      This is a simple JavaScript code snippet that just implements the formula shown above.
-                     <pre>
-                        <code class="lang-js">function WishSpawnRate(WL, WBB, WBF, CD, CL, CT, PR, WP) {
-                        return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP);
-                        }
-                        </code>
-                     </pre>
+                     <pre><code class="lang-js">function WishSpawnRate(WL, WBB, WBF, CD, CL, CT, PR, WP) {
+  return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP);
+}</code></pre>
                      This is a simple Python code snippet that just implements the formula shown above.
                      <pre><code class="lang-py">def WishSpawnRate(WL, WBB, WBF, CD, CL, CT, PR, WP):
-                        return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP)
-                     </code></pre>
+  return (WL * (1 + WBB / 100) + WBF / 100) / (CL - CD + ((1 - (CL) / (CT)) ** PR) * CT) + (1 / WP)</code></pre>
                   </div>
                </div>
             </div>
+            
          </div>
       </main>
       <footer class="footer mt-auto py-3">
